@@ -1,0 +1,47 @@
+politician_name,ticker,issuer_name,traded_date,published_date,trade_year,trade_month,trade_quarter,transaction_type,is_buy,is_sell,trade_amount,size,price,filed_after_days,owner,is_joint_ownership,full_name,bioguide_id,party,chamber,age,gender,num_committees,is_committee_leader,committee_power_score,is_leadership,scraped_at
+Shelley Moore Capito,ITW,Illinois Tool Works Inc,2026-02-23,2026-03-04,2026,2,1,sell,0,1,8000.0,1K–15K,$294.56,8,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:45
+Shelley Moore Capito,PAYX,Paychex Inc,2026-02-19,2026-03-04,2026,2,1,sell,0,1,8000.0,1K–15K,$91.24,12,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:45
+Shelley Moore Capito,BLK,Blackrock Inc,2026-02-09,2026-03-04,2026,2,1,sell,0,1,8000.0,1K–15K,"$1,087.78",22,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:46
+Shelley Moore Capito,ADI,Analog Devices Inc,2026-02-09,2026-03-04,2026,2,1,sell,0,1,8000.0,1K–15K,$325.16,22,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:46
+Shelley Moore Capito,AVGO,Broadcom Inc,2026-02-08,2026-03-04,2026,2,1,buy,1,0,8000.0,1K–15K,$343.94,23,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:46
+Shelley Moore Capito,GOOGL,Alphabet Inc,2026-02-08,2026-03-04,2026,2,1,buy,1,0,8000.0,1K–15K,$324.40,23,Spouse,0,Shelley Moore Capito,C001047,Republican,Senate,73.0,F,18.0,1.0,22.0,0.0,2026-03-04 13:54:46
+Virginia Foxx,ARLP,Alliance Resource Partners LP,2026-02-12,2026-03-03,2026,2,1,buy,1,0,8000.0,1K–15K,$25.82,17,Undisclosed,0,Virginia Foxx,F000450,Republican,House,83.0,F,5.0,0.0,5.0,0.0,2026-03-04 13:54:46
+Markwayne Mullin,MTZ,MasTec Inc,2026-02-03,2026-03-02,2026,2,1,sell,0,1,32500.0,15K–50K,$235.44,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:47
+Markwayne Mullin,MPWR,Monolithic Power Systems Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,"$1,136.83",26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:54
+Markwayne Mullin,MCK,McKesson Corp,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$822.00,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:54
+Markwayne Mullin,LRN,Stride Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$86.45,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:54
+Markwayne Mullin,IRM,Iron Mountain Inc,2026-02-03,2026-03-02,2026,2,1,sell,0,1,8000.0,1K–15K,$90.07,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:54
+Markwayne Mullin,GS,The Goldman Sachs Group Inc,2026-02-03,2026-03-02,2026,2,1,sell,0,1,32500.0,15K–50K,$913.30,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,FCFS,FirstCash Holdings Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$171.92,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,DELL,Dell Technologies Inc,2026-02-03,2026-03-02,2026,2,1,sell,0,1,32500.0,15K–50K,$122.04,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,CRS,Carpenter Technology Corp,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$334.19,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,COHR,Coherent Corp,2026-02-03,2026-03-02,2026,2,1,sell,0,1,32500.0,15K–50K,$211.00,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,C,Citigroup Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$117.43,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:55
+Markwayne Mullin,APG,APi Group Corp,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$42.18,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:54:56
+Markwayne Mullin,AMKR,Amkor Technology Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$43.87,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:55:03
+Markwayne Mullin,AIT,Applied Industrial Technologies Inc,2026-02-03,2026-03-02,2026,2,1,sell,0,1,8000.0,1K–15K,$289.94,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:55:03
+Markwayne Mullin,ADBE,Adobe Inc,2026-02-03,2026-03-02,2026,2,1,buy,1,0,32500.0,15K–50K,$279.71,26,Joint,1,Markwayne Mullin,M001190,Republican,Senate,49.0,M,15.0,1.0,19.0,0.0,2026-03-04 13:55:03
+Bill Keating,VMW,VMware Inc,2026-02-03,2026-02-27,2026,2,1,buy,1,0,8000.0,1K–15K,,22,Undisclosed,0,,,Democrat,House,,,,,,,2026-03-04 13:55:04
+Josh Gottheimer,GILD,Gilead Sciences Inc,2026-01-26,2026-02-27,2026,1,1,buy,1,0,8000.0,1K–15K,$140.97,30,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:04
+Josh Gottheimer,ICE,Intercontinental Exchange Inc,2026-01-25,2026-02-27,2026,1,1,buy,1,0,8000.0,1K–15K,$175.10,31,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:04
+Josh Gottheimer,NSRGY,"Nestle SA, Cham Und Vevey",2026-01-25,2026-02-27,2026,1,1,sell,0,1,8000.0,1K–15K,$92.85,31,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:04
+Josh Gottheimer,SNDR,SCHNEIDER NATIONAL INC,2026-01-25,2026-02-27,2026,1,1,sell,0,1,8000.0,1K–15K,$29.92,31,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:04
+Josh Gottheimer,NOW,ServiceNow Inc,2026-01-29,2026-02-27,2026,1,1,sell,0,1,8000.0,1K–15K,$117.01,27,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:05
+Josh Gottheimer,UBER,Uber Technologies Inc,2026-01-29,2026-02-27,2026,1,1,sell,0,1,8000.0,1K–15K,$80.05,27,Joint,1,Josh Gottheimer,G000583,Democrat,House,51.0,M,7.0,1.0,7.0,0.0,2026-03-04 13:55:12
+Cleo Fields,AMD,Advanced Micro Devices Inc,2026-02-02,2026-02-25,2026,2,1,buy,1,0,75000.0,50K–100K,$242.11,21,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:13
+Cleo Fields,GOOGL,Alphabet Inc,2026-02-02,2026-02-25,2026,2,1,buy,1,0,175000.0,100K–250K,$339.71,21,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:13
+Cleo Fields,AAPL,Apple Inc,2026-02-11,2026-02-25,2026,2,1,buy,1,0,8000.0,1K–15K,$261.73,12,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:13
+Cleo Fields,LRCX,Lam Research Corp,2026-02-02,2026-02-25,2026,2,1,buy,1,0,32500.0,15K–50K,$230.10,21,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:13
+Cleo Fields,META,Meta Platforms Inc,2026-02-02,2026-02-25,2026,2,1,buy,1,0,175000.0,100K–250K,$691.70,21,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:13
+Cleo Fields,MU,Micron Technology Inc,2026-02-02,2026-02-25,2026,2,1,buy,1,0,175000.0,100K–250K,$419.44,21,Undisclosed,0,Cleo Fields,F000110,Democrat,House,64.0,M,4.0,0.0,4.0,0.0,2026-03-04 13:55:14
+Scott Franklin,HSY,The Hershey Co,2026-02-09,2026-02-24,2026,2,1,sell,0,1,8000.0,1K–15K,$229.00,13,Undisclosed,0,,,Republican,House,,,,,,,2026-03-04 13:55:21
+Scott Franklin,HSY,The Hershey Co,2026-02-09,2026-02-24,2026,2,1,sell,0,1,8000.0,1K–15K,$229.00,13,Spouse,0,,,Republican,House,,,,,,,2026-03-04 13:55:21
+Scott Franklin,HSY,The Hershey Co,2026-02-09,2026-02-24,2026,2,1,sell,0,1,75000.0,50K–100K,$229.00,13,Undisclosed,0,,,Republican,House,,,,,,,2026-03-04 13:55:21
+Jonathan Jackson,C,Citigroup Inc,2026-01-29,2026-02-24,2026,1,1,buy,1,0,32500.0,15K–50K,$115.71,24,Joint,1,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:21
+Jonathan Jackson,GEV,GE VERNOVA INC,2026-01-29,2026-02-24,2026,1,1,buy,1,0,32500.0,15K–50K,$726.37,24,Joint,1,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,JPM,JPMorgan Chase & Co,2026-01-19,2026-02-24,2026,1,1,buy,1,0,8000.0,1K–15K,$302.74,34,Spouse,0,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,PLTR,Palantir Technologies Inc,2026-01-15,2026-02-24,2026,1,1,sell,0,1,32500.0,15K–50K,$170.96,38,Joint,1,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,HOOD,Robinhood Markets Inc,2026-01-19,2026-02-24,2026,1,1,sell,0,1,8000.0,1K–15K,$105.78,34,Spouse,0,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,SHOP,Shopify Inc,2026-01-29,2026-02-24,2026,1,1,sell,0,1,75000.0,50K–100K,$131.23,24,Undisclosed,0,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,TMUS,T-Mobile US Inc,2026-01-12,2026-02-24,2026,1,1,sell,0,1,75000.0,50K–100K,$189.67,41,Joint,1,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22
+Jonathan Jackson,VSAT,ViaSat Inc,2026-01-21,2026-02-24,2026,1,1,buy,1,0,75000.0,50K–100K,$44.23,32,Joint,1,Jonathan L. Jackson,J000309,Democrat,House,60.0,M,6.0,0.0,6.0,0.0,2026-03-04 13:55:22

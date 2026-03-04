@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9347711c-0b27-44ff-995e-6ec1c664284c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../VT-ECE-4805/Segmentation_Model/Outline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../CMakeLists.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebooks/Scraper-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/notebooks/Scraper-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scraper.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/scraper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../code.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../code.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../main.cpp" beforeDir="false" />
@@ -18,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="3" />
+    <option name="cachedIndexableFilesCount" value="14" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -29,15 +34,15 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="39XERVTPd0nSjJjwoJEMrpsKsYj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -54,10 +59,10 @@
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "C:/Users/wdcan/source/repos/VT-ECE-5424/Capstone",
+    "last_opened_file_path": "C:/Users/wdcan/source/repos/VT-ECE-5424/congressional-trades-ml",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -109,6 +114,7 @@
       <option name="presentableId" value="Default" />
       <updated>1770834008635</updated>
       <workItem from="1770834009683" duration="3096000" />
+      <workItem from="1772589768643" duration="978000" />
     </task>
     <servers />
   </component>
