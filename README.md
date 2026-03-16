@@ -12,41 +12,45 @@ This project develops ML models to predict stock returns based on congressional 
 3. Which features (leadership position, committees, party control) best predict successful trades?
 
 ## Project Status
-🚧 **In Development** - Currently in data collection phase
+ **In Development** - Currently in data collection phase
 
-- [x] Project proposal completed
-- [x] Web scraper developed
-- [ ] Data collection (congressional trades 2020-2025)
-- [ ] Stock price data collection
-- [ ] Exploratory data analysis
-- [ ] Feature engineering
-- [ ] Baseline model development
-- [ ] Advanced model development
-- [ ] Model evaluation and backtesting
+**Completed**
+- Project proposal
+- Web scraper
+- Data collection (congressional trades 2020-2025)
+- Stock price data collection
+- Baseline model development
+
+**Planned**
+- Feature engineering
+- exploratory data analysis
+- Advanced model development
+- Model evaluation and backtesting
 
 ## Dataset
 
 ### Data Sources
-- **Congressional Trades**: [Senate Electronic Financial Disclosure](https://efdsearch.senate.gov/)
+- **Congressional Trades**: [Capitol Trades](https://www.capitoltrades.com/trades?pageSize=96)
 - **Stock Prices**: Yahoo Finance API
-- **Senator Metadata**: Congressional records (committees, party, tenure)
+- **Senator Metadata**: [congress-legislators github](https://github.com/unitedstates/congress-legislators?tab=readme-ov-file)
 
 ### Expected Data Size
-- ~10,000-15,000 congressional transactions (2020-2025)
+- 7245 congressional transactions collected thus far
+- ~20000 congressional transactions expected
 - Stock price data for ~500-1000 unique tickers
-- Metadata for ~100 senators
+- Metadata for 538 congresspeople
 
 ## Methodology
 
 ### Machine Learning Pipeline
 1. **Data Collection**: Web scraping congressional disclosures + stock price APIs
 2. **Feature Engineering**: Leadership position, committee power, trade timing, market conditions
-3. **Baseline Models**: Logistic Regression, Decision Trees
-4. **Advanced Models**: Random Forest, XGBoost/LightGBM
-5. **Evaluation**: Accuracy, Precision, Recall, F1, ROC-AUC, portfolio backtesting
+3. **Baseline Models**: Logistic Regression, Random Forest
+4. **Advanced Models**: TBD
+5. **Evaluation**: TBD
 
 ### Target Variable
-Binary classification: Does stock outperform S&P 500 by >5% at 90 days post-disclosure?
+Binary classification: Does stock outperform S&P 500?
 
 ## Repository Structure
 
@@ -54,56 +58,38 @@ Binary classification: Does stock outperform S&P 500 by >5% at 90 days post-disc
 congressional-trading-ml/
 ├── README.md                 # Project overview (this file)
 ├── requirements.txt          # Python dependencies
-├── .gitignore               # Git ignore rules
-├── data/
-│   ├── raw/                 # Original scraped data
-│   ├── processed/           # Cleaned datasets
-│   └── external/            # Stock prices, senator metadata
+├── .gitignore                # Git ignore rules
+├── data/                     # contains legislator metadata, raw trade data, stock prices, etc
 ├── notebooks/
-│   ├── 01_data_collection.ipynb
-│   ├── 02_exploratory_analysis.ipynb
-│   ├── 03_feature_engineering.ipynb
-│   └── 04_modeling.ipynb
+│   ├── data_collection.ipynb
+│   ├── trade_analysis.ipynb
+│   └── modeling_analysis.ipynb
 ├── src/
-│   ├── __init__.py
-│   ├── scraper.py           # Web scraping functions
-│   ├── data_processing.py   # Data cleaning utilities
-│   ├── features.py          # Feature engineering
-│   └── models.py            # ML model implementations
-├── results/
-│   ├── figures/             # Visualizations
-│   └── metrics/             # Model performance metrics
+│   ├── capitoltrades_scraper.py       # Web scraping 
+│   ├── process_data.py                # Data processing
+│   ├── download_stock_prices.py       # get stock prices
+│   ├── calculate_returns.py           # calculate transaction returns
+│   └── models.py                      # ML model implementations
 └── docs/
-    └── proposal.pdf         # Project proposal
+    └── 5424 Capstone Proposal.pdf         # Project proposal
 ```
 
 ## Installation & Setup
 
-### Prerequisites
-- Python 3.8+
-- Git
-- Chrome browser (for Selenium web scraping)
-
 ### Installation Steps
 
 1. Clone the repository:
-```bash
-git clone https://github.com/YOUR_USERNAME/congressional-trading-ml.git
+```
+git clone https://github.com/wdcannella/congressional-trading-ml.git
 cd congressional-trading-ml
 ```
 
-2. Create virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+2. Install dependencies:
 ```
-
-3. Install dependencies:
-```bash
 pip install -r requirements.txt
 ```
 
-4. Download ChromeDriver for Selenium:
+3. Download ChromeDriver for Selenium:
    - Visit https://chromedriver.chromium.org/
    - Download version matching your Chrome browser
    - Place in project root or add to PATH
@@ -111,39 +97,48 @@ pip install -r requirements.txt
 ## Usage
 
 ### Data Collection
-```bash
+```
 # Test congressional trade scraper
 python src/capitoltrades_scraper.py --max-pages 3
 
 # Run congressional trade scraper
-python src/capitoltrades_scraper.py --max-pages 2899
+python src/capitoltrades_scraper.py --max-pages 363
 
 # Run data processor
 python src/process_data.py
 
 # Download Stock Price Data
 python src/download_stock_prices.py
+```
 
 
-
-### Exploratory Analysis
-
-# Launch Jupyter notebook
+### Analysis
+```
+# Launch Jupyter notebooks
 jupyter notebook notebooks/data_collection.ipynb
+jupyter notebook notebooks/trade_analysis.ipynb
+jupyter notebook notebooks/modeling_analysis.ipynb
+
 ```
 
 ### Model Training
-```bash
-# Train baseline models
-#python src/models.py --model logistic_regression
+```
+# Train models
+python src/models.py --model logistic_regression
+python src/models.py --model random_forest
 
-# Train advanced models
-#python src/models.py --model random_forest
 ```
 
 ## Key Findings
 
-*To be updated as project progresses*
+- **Trading Balance**: Congressional trading is nearly equally divided between Republicans and Democrats.
+- **House vs Senate**: The House of Representatives accounts for over 90% of all reported trades.
+- **Market Performance**: Congressional trades show a modest average 30-day mean excess return of **+0.34%** relative to the S&P 500, but the median return is slightly negative (-0.09%).
+- **Alpha Probability**: Approximately **49.2%** of congressional trades outperformed the market over a 30-day window.
+- **Party Comparison**: In this dataset, Republican trades showed slightly higher mean and median excess returns than Democratic trades.
+- **Committee Power**: There is no strong positive correlation between a member's committee power and their trading frequency.
+
+
 
 ## References
 
@@ -153,9 +148,6 @@ jupyter notebook notebooks/data_collection.ipynb
 4. Zhou & Wei (2024) - "Political Power and Profitable Trades in the US Congress"
 5. Mintarya et al. (2023) - "Machine Learning Approaches in Stock Market Prediction"
 
-## License
-
-This project is for educational purposes as part of an Advanced Machine Learning course.
 
 ## Author
 

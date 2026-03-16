@@ -31,43 +31,61 @@ def load_raw_data():
 
 def fix_trade_states(trades):
     """
-    Fix state extraction issues from trade data.
-    Re-extract from politician_name field.
+    Fix state extraction and name cleaning for trade data.
     """
-    print("\nFixing state extraction...")
-    
-    # First, let's see what we're working with
-    print("Sample politician_name values:")
-    print(trades['politician_name'].head(10).tolist())
+    print("\nFixing state extraction and cleaning names...")
     
     # Check if state is already in the data
     if 'state' in trades.columns:
-        print(f"\nExisting state values: {trades['state'].value_counts().to_dict()}")
+        print(f"Existing state values count: {len(trades['state'].unique())}")
     
-    def extract_state_fixed(text):
-        """Extract 2-letter state code from end of text."""
+    def clean_name_and_extract_state(text):
+        """Clean name and extract state if possible."""
         if pd.isna(text):
-            return ''
+            return '', ''
         
-        # Split and get last word
-        words = str(text).split()
+        # Original: "Angus King OtherSenateME" or "Thomas Kean Jr"
+        # We want to remove artifacts like "OtherSenateME"
+        name = str(text).strip()
+        
+        # Common artifacts to remove (case insensitive)
+        artifacts = [r'OtherSenate[A-Z]{2}', r'OtherHouse[A-Z]{2}', r'Senate[A-Z]{2}', r'House[A-Z]{2}']
+        for artifact in artifacts:
+            name = re.sub(artifact, '', name, flags=re.IGNORECASE).strip()
+        
+        # Extract state if it's 2 uppercase letters at the end
+        state = ''
+        words = name.split()
         if len(words) > 0:
             last_word = words[-1].strip()
-            # Check if it's exactly 2 uppercase letters
             if len(last_word) == 2 and last_word.isupper():
-                if last_word not in ['US', 'NA', 'VP']:
-                    return last_word
-        return ''
+                if last_word not in ['US', 'NA', 'VP', 'JR', 'II', 'IV']:
+                    state = last_word
+                    # Remove state from name if it was just appended
+                    name = " ".join(words[:-1]).strip()
+        
+        # Final cleanup for common suffixes that might be in the name
+        # but NOT in the first/last name fields of the member data
+        name = re.sub(r'\s+(Jr|Sr|II|III|IV)\.?$', '', name, flags=re.IGNORECASE).strip()
+        
+        return name, state
+
+    # Apply cleaning
+    cleaned_data = trades['politician_name'].apply(clean_name_and_extract_state)
+    trades['politician_name_clean'] = [x[0] for x in cleaned_data]
+    extracted_states = [x[1] for x in cleaned_data]
     
-    # Only try to extract if state doesn't exist or is all empty
-    if 'state' not in trades.columns or trades['state'].isna().all() or (trades['state'] == '').all():
-        print("Attempting to extract state from politician_name...")
-        trades['state_fixed'] = trades['politician_name'].apply(extract_state_fixed)
-        trades['state'] = trades['state_fixed']
-        trades = trades.drop(columns=['state_fixed'], errors='ignore')
-    
-    # Show what was extracted
-    print(f"States after extraction: {trades['state'].value_counts().to_dict()}")
+    # Update state only if it's missing or empty
+    if 'state' not in trades.columns:
+        trades['state'] = extracted_states
+    else:
+        trades['state'] = trades['state'].fillna('').replace('', np.nan)
+        # Only fill with extracted if still NaN
+        trades['state'] = trades['state'].fillna(pd.Series(extracted_states))
+        trades['state'] = trades['state'].fillna('')
+
+    # Show what was cleaned
+    print(f"Sample cleaned names: {trades['politician_name_clean'].head(5).tolist()}")
     print(f"Empty states: {(trades['state'] == '').sum()}")
     
     return trades
@@ -181,16 +199,20 @@ def merge_trades_with_members(trades, members):
     """
     print("\nMerging trades with member data...")
     
+    # Use cleaned name for matching
+    name_col = 'politician_name_clean' if 'politician_name_clean' in trades.columns else 'politician_name'
+    
     # Prepare matching keys
-    trades['last_name'] = trades['politician_name'].str.split().str[-1].str.upper().str.strip()
-    trades['first_name'] = trades['politician_name'].str.split().str[0].str.upper().str.strip()
+    trades['last_name'] = trades[name_col].str.split().str[-1].str.upper().str.strip()
+    trades['first_name'] = trades[name_col].str.split().str[0].str.upper().str.strip()
     
     members['last_name_upper'] = members['last_name'].str.upper().str.strip()
     members['first_name_upper'] = members['first_name'].str.upper().str.strip()
+    members['full_name_upper'] = members['full_name'].str.upper().str.strip()
     members['chamber_mapped'] = members['type'].map({'sen': 'Senate', 'rep': 'House'})
     
     # Strategy 1: Match on last name + first name + chamber
-    print("Trying match on: last_name + first_name + chamber")
+    print("Strategy 1: last_name + first_name + chamber")
     merged = trades.merge(
         members,
         left_on=['last_name', 'first_name', 'chamber'],
@@ -199,44 +221,99 @@ def merge_trades_with_members(trades, members):
         suffixes=('_trade', '_member')
     )
     
-    match_rate = (merged['bioguide_id'].notna().sum() / len(merged)) * 100
-    print(f"Match rate (name + chamber): {match_rate:.1f}%")
+    unmatched_mask = merged['bioguide_id'].isna()
+    match_rate = (1 - unmatched_mask.sum() / len(merged)) * 100
+    print(f"Match rate: {match_rate:.1f}%")
     
-    # If still poor, try with state too
-    if match_rate < 50:
-        print("Trying match on: last_name + state + chamber")
-        merged = trades.merge(
+    # Strategy 2: For unmatched, try matching on cleaned full name + chamber
+    if unmatched_mask.any():
+        print("Strategy 2: politician_name_clean + chamber")
+        unmatched_indices = merged[unmatched_mask].index
+        
+        # We need to be careful with the merge here to not duplicate rows
+        # We'll do a separate merge for unmatched and then update
+        unmatched_trades = trades.loc[unmatched_indices].copy()
+        unmatched_trades['name_upper'] = unmatched_trades[name_col].str.upper().str.strip()
+        
+        rematch = unmatched_trades.merge(
+            members,
+            left_on=['name_upper', 'chamber'],
+            right_on=['full_name_upper', 'chamber_mapped'],
+            how='left',
+            suffixes=('_trade', '_member')
+        )
+        
+        # Update merged with rematched data
+        for col in members.columns:
+            if col == 'chamber': continue
+            
+            # Use the actual column name from the rematch DataFrame
+            # rematch columns are same as members columns because we merged with members
+            if col not in rematch.columns: continue
+
+            target_col = col + '_member' if col + '_member' in merged.columns else col
+            if target_col in merged.columns:
+                merged.loc[unmatched_indices, target_col] = rematch[col].values
+            else:
+                if col in ['bioguide_id', 'full_name', 'age', 'gender', 'num_committees', 
+                          'is_committee_leader', 'committee_power_score', 'is_leadership']:
+                    merged.loc[unmatched_indices, col] = rematch[col].values
+
+        unmatched_mask = merged['bioguide_id'].isna()
+        match_rate = (1 - unmatched_mask.sum() / len(merged)) * 100
+        print(f"Match rate after Strategy 2: {match_rate:.1f}%")
+
+    # Strategy 3: Try last name + state + chamber (good for different first names/nicknames)
+    if unmatched_mask.any():
+        print("Strategy 3: last_name + state + chamber")
+        unmatched_indices = merged[unmatched_mask].index
+        unmatched_trades = trades.loc[unmatched_indices].copy()
+        
+        rematch = unmatched_trades.merge(
             members,
             left_on=['last_name', 'state', 'chamber'],
             right_on=['last_name_upper', 'state', 'chamber_mapped'],
             how='left',
             suffixes=('_trade', '_member')
         )
-        match_rate = (merged['bioguide_id'].notna().sum() / len(merged)) * 100
-        print(f"Match rate (name + state + chamber): {match_rate:.1f}%")
-    
-    # Show unmatched
-    if match_rate < 100:
-        print("\nUnmatched trades:")
-        # Use original column names (they may have _trade suffix after merge)
-        cols_to_show = []
-        for col in ['politician_name', 'state_trade', 'chamber', 'last_name', 'first_name']:
-            if col in merged.columns:
-                cols_to_show.append(col)
         
-        if len(cols_to_show) > 0:
-            unmatched = merged[merged['bioguide_id'].isna()][cols_to_show].drop_duplicates()
-            print(unmatched)
-        else:
-            print(f"{(merged['bioguide_id'].isna()).sum()} unmatched trades")
+        # Update
+        for col in members.columns:
+            if col == 'chamber': continue
+            if col not in rematch.columns: continue
+            
+            target_col = col + '_member' if col + '_member' in merged.columns else col
+            if target_col in merged.columns:
+                merged.loc[unmatched_indices, target_col] = merged.loc[unmatched_indices, target_col].fillna(pd.Series(rematch[col].values, index=unmatched_indices))
+            else:
+                if col in ['bioguide_id', 'full_name', 'age', 'gender', 'num_committees', 
+                          'is_committee_leader', 'committee_power_score', 'is_leadership']:
+                    merged.loc[unmatched_indices, col] = rematch[col].values
+
+        unmatched_mask = merged['bioguide_id'].isna()
+        match_rate = (1 - unmatched_mask.sum() / len(merged)) * 100
+        print(f"Match rate after Strategy 3: {match_rate:.1f}%")
+
+    # Show remaining unmatched
+    if unmatched_mask.any():
+        print("\nStill unmatched trades:")
+        cols_to_show = ['politician_name', name_col, 'state_trade', 'chamber', 'last_name', 'first_name']
+        cols_to_show = [c for c in cols_to_show if c in merged.columns]
+        unmatched = merged[unmatched_mask][cols_to_show].drop_duplicates()
+        print(unmatched)
     
-    # Use trade party if member party is missing
+    # Final cleanup of merged columns
+    # Handle party (prefer member data)
     if 'party_member' in merged.columns and 'party_trade' in merged.columns:
         merged['party'] = merged['party_member'].fillna(merged['party_trade'])
     elif 'party_member' in merged.columns:
         merged['party'] = merged['party_member']
     elif 'party_trade' in merged.columns:
         merged['party'] = merged['party_trade']
+    
+    # If state_member exists, use it to fill state
+    if 'state_member' in merged.columns:
+        merged['state'] = merged['state_member'].fillna(merged['state_trade'])
     
     return merged
 

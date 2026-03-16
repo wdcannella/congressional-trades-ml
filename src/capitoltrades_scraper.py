@@ -27,7 +27,7 @@ class CapitolTradesScraper:
     
     def __init__(self, headless=False):
         """Initialize the scraper."""
-        self.url = "https://www.capitoltrades.com/trades"
+        self.url = "https://www.capitoltrades.com/trades?pageSize=96"
         self.driver = None
         self.headless = headless
         self.trades = []
@@ -272,7 +272,7 @@ class CapitolTradesScraper:
             if page_num == 1:
                 url = self.url
             else:
-                url = f"{self.url}?page={page_num}"
+                url = f"{self.url}&page={page_num}"
             
             print(f"Loading: {url}")
             self.driver.get(url)
@@ -358,7 +358,7 @@ class CapitolTradesScraper:
 
 def main():
     """Main function to run the scraper from command line."""
-    parser = argparse.ArgumentParser(description='Scrape Capitol Trades data (v6 - Fixed Names)')
+    parser = argparse.ArgumentParser(description='Scrape Capitol Trades data')
     parser.add_argument('--max-pages', type=int, default=5, 
                        help='Maximum number of pages to scrape (default: 5)')
     parser.add_argument('--headless', action='store_true',
