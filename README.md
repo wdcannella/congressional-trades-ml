@@ -12,7 +12,7 @@ This project develops ML models to predict stock returns based on congressional 
 3. Which features (leadership position, committees, party control) best predict successful trades?
 
 ## Project Status
- **In Development** - Currently in data collection phase
+ **In Development** - Currently improving model performance and feature engineering
 
 **Completed**
 - Project proposal
@@ -52,27 +52,6 @@ This project develops ML models to predict stock returns based on congressional 
 ### Target Variable
 Binary classification: Does stock outperform S&P 500?
 
-## Repository Structure
-
-```
-congressional-trading-ml/
-├── README.md                 # Project overview (this file)
-├── requirements.txt          # Python dependencies
-├── .gitignore                # Git ignore rules
-├── data/                     # contains legislator metadata, raw trade data, stock prices, etc
-├── notebooks/
-│   ├── data_collection.ipynb
-│   ├── trade_analysis.ipynb
-│   └── modeling_analysis.ipynb
-├── src/
-│   ├── capitoltrades_scraper.py       # Web scraping 
-│   ├── process_data.py                # Data processing
-│   ├── download_stock_prices.py       # get stock prices
-│   ├── calculate_returns.py           # calculate transaction returns
-│   └── models.py                      # ML model implementations
-└── docs/
-    └── 5424 Capstone Proposal.pdf         # Project proposal
-```
 
 ## Installation & Setup
 
@@ -115,9 +94,9 @@ python src/download_stock_prices.py
 ### Analysis
 ```
 # Launch Jupyter notebooks
-jupyter notebook notebooks/data_collection.ipynb
-jupyter notebook notebooks/trade_analysis.ipynb
-jupyter notebook notebooks/modeling_analysis.ipynb
+jupyter notebook notebooks/data_processing.ipynb
+jupyter notebook notebooks/exploratory_analysis.ipynb
+jupyter notebook notebooks/ml_models.ipynb
 
 ```
 
@@ -131,12 +110,6 @@ python src/models.py --model random_forest
 
 ## Key Findings
 
-- **Trading Balance**: Congressional trading is nearly equally divided between Republicans and Democrats.
-- **House vs Senate**: The House of Representatives accounts for over 90% of all reported trades.
-- **Market Performance**: Congressional trades show a modest average 30-day mean excess return of **+0.34%** relative to the S&P 500, but the median return is slightly negative (-0.09%).
-- **Alpha Probability**: Approximately **49.2%** of congressional trades outperformed the market over a 30-day window.
-- **Party Comparison**: In this dataset, Republican trades showed slightly higher mean and median excess returns than Democratic trades.
-- **Committee Power**: There is no strong positive correlation between a member's committee power and their trading frequency.
 
 
 
@@ -162,4 +135,3 @@ Advanced Machine Learning - Spring 2026
 
 ---
 
-**Disclaimer**: This project is for academic research only. Not financial advice. Congressional trading data is public information under the STOCK Act (2012).
