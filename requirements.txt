@@ -2,37 +2,30 @@
 selenium==4.36.0
 beautifulsoup4==4.14.3
 requests==2.32.5
-# lxml==5.3.1  # Optional: used as a parser for BeautifulSoup if needed
 
-# Data Processing
+#Data Processing
 pandas==2.3.3
 numpy==2.0.2
 
 # Stock Market Data
 yfinance==1.2.0
-# pandas-datareader==0.10.0  # Not currently used, but keep if needed
 
 # Machine Learning
 scikit-learn==1.6.1
 xgboost==2.1.4
 lightgbm==4.5.0
-# imbalanced-learn==0.13.0  # For SMOTE if needed
 
 # Visualization
 matplotlib==3.9.4
 seaborn==0.13.2
 plotly==6.0.0
 
-# Jupyter Notebooks
+#Jupyter Notebooks
 jupyter==1.1.1
 notebook==7.5.3
 ipykernel==6.31.0
 
 # Utilities
 python-dateutil==2.9.0.post0
-tqdm==4.67.3  # Progress bars
-openpyxl==3.1.5  # Excel file support
-
-# Code Quality
-black==25.1.0  # Code formatter
-flake8==7.1.2  # Linter
+tqdm==4.67.3
+openpyxl==3.1.5
