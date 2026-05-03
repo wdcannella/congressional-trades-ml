@@ -1,31 +1,29 @@
-# Web Scraping
+# web scraping
 selenium==4.36.0
 beautifulsoup4==4.14.3
 requests==2.32.5
 
-#Data Processing
-pandas==2.3.3
-numpy==2.0.2
+# data processing
+pandas==2.2.3
+numpy==1.26.4
+scipy==1.13.1
 
-# Stock Market Data
+# stock market data
 yfinance==1.2.0
 
-# Machine Learning
+# machine learning
 scikit-learn==1.6.1
 xgboost==2.1.4
-lightgbm==4.5.0
 
-# Visualization
-matplotlib==3.9.4
+# visualization
+matplotlib==3.9.2
 seaborn==0.13.2
-plotly==6.0.0
 
-#Jupyter Notebooks
+# jupyter notebooks
 jupyter==1.1.1
 notebook==7.5.3
-ipykernel==6.31.0
+ipykernel==6.29.5
 
-# Utilities
+# utilities
 python-dateutil==2.9.0.post0
-tqdm==4.67.3
-openpyxl==3.1.5
+tqdm==4.67.1
